@@ -1,6 +1,8 @@
 #include <Arduino.h>
 #include <SPI.h>
 #include <MFRC522.h>
+#include <sss.h>
+#include <string.h>
 
 void writeSecret(char* secret);
 void readSecret();
@@ -19,11 +21,20 @@ void setup() {
 }
 
 void loop() {
-  if(option == 0){
-      // writeSecret("Hellllo#");
-      readSecret();
-      option = 1;
+  char share1[15] = "_ZeZdY";
+  char share2[15] = "PKVKUJ";
+  int secret_length = strlen(share1);
+  // getShare(secret, strlen(secret), 2, share1);
+  if(!option){
+    char secret[secret_length + 1];
+    getSecret(share1, 1, share2, 2, secret, secret_length);
+    Serial.print(secret_length);
+    for (int i = 0; i < secret_length; i++)
+    {
+      Serial.print(secret[i]); 
     }
+    option = 1;
+  }
 }
 
 void writeSecret(char* secret){
