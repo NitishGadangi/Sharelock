@@ -2,6 +2,9 @@
 #include <sss.h>
 #include <string.h>
 
+int y_x(int x, int a0);
+int lagranges_constant(int x0, int y0, int x1, int y1);
+
 /* For given Secret generate Share corresponding to given share_number */
 void getShare(char *secret, int secret_length, int share_number, char *share)
 {
